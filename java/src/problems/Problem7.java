@@ -10,7 +10,6 @@
  * 
  */
 package problems;
-import java.math.*;
 
 public class Problem7 {
 
