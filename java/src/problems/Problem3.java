@@ -34,7 +34,7 @@ public class Problem3 {
 	 * Check if number is prime
 	 */
 	public static boolean isPrime(long number){
-		for(long i=2; i<number; i++){
+		for(long i=2; i<=Math.sqrt(number); i++){
 			if(number%i==0){
 				return false;
 			}
