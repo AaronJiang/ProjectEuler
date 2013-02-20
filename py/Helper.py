@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt, pow
 
 def fibonacci(n):
 	if n<=2:
@@ -20,3 +20,13 @@ def isPalidrome(n):
 
 def reverseInt(n):
 	return int(str(n)[::-1])
+
+def gcd(a, b):
+    """Return greatest common divisor."""
+    while b:      
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    """Return lowest common multiple."""
+    return a * b / gcd(a, b)
