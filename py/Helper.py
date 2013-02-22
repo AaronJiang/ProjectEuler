@@ -30,3 +30,5 @@ def gcd(a, b):
 def lcm(a, b):
     """Return lowest common multiple."""
     return a * b / gcd(a, b)
+
+
