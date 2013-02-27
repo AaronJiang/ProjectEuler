@@ -64,24 +64,32 @@ for row in rows:
     x+=1
 
 
-product  = 0
-for i in range(0, 10):
-    for j in range(0, 10):
-        ii = 19-i
-        jj = 19-j
-        h_product1 = d[i][j] * d[i][j+1] * d[i][j+2] * d[i][j+3]
-        v_product1 = d[i][j] * d[i+1][j] * d[i+2][j] * d[i+3][j]
-        d_product1 = d[i][j] * d[i+1][j+1] * d[i+2][j+2] * d[i+3][j+3]
-        
-        h_product2 = d[ii][jj] * d[ii][jj-1] * d[ii][jj-2] * d[ii][jj-3]
-        v_product2 = d[ii][jj] * d[ii-1][jj] * d[ii-2][jj] * d[ii-3][jj]
-        d_product2 = d[ii][jj] * d[ii-1][jj-1] * d[ii-2][jj-2] * d[ii-3][jj-3]
+def product(a, b, al="hori", r=4):
+    try:
+        res = 1
+        for xx in xrange(r):
+            if al == "hori": #        -
+                res *= d[a][b+xx]
+            elif al == "verti": #     |
+                res *= d[b+xx][a]
+            elif al == "dia": #       \
+                res *= d[a+xx][b+xx]
+            elif al == "diarev": #    /
+                res *= d[a+xx][19-(b+xx)]
+        return res
+    except:
+        return 0
 
-        p1 = max(h_product1, v_product1, d_product1)
-        p2 = max(h_product2, v_product2, d_product2)
-        p = max(p1, p2)
-        if product < p:
-            product = p   
+hori = []
+verti = []
+dia = []
+diarev = []
 
+for x in xrange(0, 20):
+    for y in xrange(0, 20):
+        hori.append(product(x,y))
+        verti.append(product(x, y, "verti"))
+        dia.append(product(x, y, "dia"))
+        diarev.append(product(x, y, "diarev"))
 
-print product   
+print max(max(hori), max(verti), max(dia), max(diarev))

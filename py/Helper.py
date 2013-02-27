@@ -31,4 +31,24 @@ def lcm(a, b):
     """Return lowest common multiple."""
     return a * b / gcd(a, b)
 
+def factors(n):
+	res = []
+	for i in range(1, int(sqrt(n))+1):
+		if n%i == 0:
+			res.append(i)
+			res.append(n/i)
+	return res		
 
+def CollatzChain(n):
+	chain = []
+	while True:
+		
+		chain.append(n)
+		if n == 1:
+			break
+
+		if (n%2 == 0):
+			n = n/2
+		else:
+			n = 3*n + 1	
+	return len(chain)		
