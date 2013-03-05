@@ -52,3 +52,18 @@ def CollatzChain(n):
 		else:
 			n = 3*n + 1	
 	return len(chain)		
+
+def properFactors(n):
+	factors = []
+	for i in range(1, int(n**0.5)+1):
+		if n%i == 0:
+			factors.append(i)
+			if n/i != i and i !=1 :
+				factors.append(n/i)
+	return factors		
+	
+def charToValue(charest, charcase):
+	if charcase == 'UPPERCASE':
+		return ord(charest) - 64
+	elif charcase == 'LOWCASE':
+		return ord(charest) - 96		
