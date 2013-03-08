@@ -20,43 +20,20 @@ recurring cycle. It can be seen that 1/7 has a
 Find the value of d < 1000 for which 1/d contains 
 the longest recurring cycle in its decimal fraction part.
 """
-# Check the recurring of 1/n
-# 1/n must be a rational number
-def checkRecurring(n):
-	numerator = 1
-	denominator = n
-	fractions = []
-	
-	i = 1
-	while 1:
-		numerator = numerator * 10 
-		fractions.append( numerator / n )
-		numerator = numerator % n
-		if numerator == 0: 
-			return 0
-		else:	
-			length = recurringLength(fractions)
-			if length != False:
-				return length
-		i += 1
 
-def recurringLength(numbers):
-	for start in range(0, len(numbers)):
-		for length in range(1, len(numbers[start:])/2+1):
-			if numbers[start:start+length] == numbers[start+length: start+length+length]:
-				if sum(numbers[start:start+length]) != 0:
-					return len(numbers[start:start+length])
-					break
-	return False	
+"""
+This is a useful application of Fermat's little theorem 
+that says:
+1/d has a cycle of n digits if 10^n-1 mod d = 0 for prime d
+"""
 
-maxlength = 0
-pointer = 2
-# for i in range(2, 1000):
-# 	length = checkRecurring(i)
-# 	print length,
-# 	if maxlength < length:
-# 		maxlength = length
-# 		pointer = i
-print recurringLength([0,0,3,0,0,3])
-# print maxlength
-# print pointer
+def recurring_cycle(n, d):
+    # solve 10^s % d == 10^(s+t) % d
+    # where t is length and s is start
+    for t in range(1, d):
+        if 1 == 10**t % d:
+            return t
+    return 0
+
+longest = max(recurring_cycle(1, i) for i in range(2,1001))
+print [i for i in range(2,1001) if recurring_cycle(1, i) == longest][0]
