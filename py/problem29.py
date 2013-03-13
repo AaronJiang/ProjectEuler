@@ -21,4 +21,4 @@ for i in range(2, 101):
 		lists.append(i**j)
 
 lists = set(lists)
-print len(lists		)
+print len(lists)
