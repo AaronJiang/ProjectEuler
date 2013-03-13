@@ -6,7 +6,7 @@ factorial of their digits.
 
 Note: as 1! = 1 and 2! = 2 are not sums they are not included.
 
-This probelm borthed, I wont waste time on it. So answers from 
+This probelm bothered, I wont waste time on it. So answers from 
 http://blog.dreamshire.com/2009/04/22/project-euler-problem-33-solution/
 """
 
