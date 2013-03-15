@@ -13,10 +13,7 @@ def isPrime(n):
 	return True
 
 def isPalidrome(n):
-	if reverseInt(n) == n:
-		return True
-	else:
-		return False	
+	return str(n)==str(n)[::-1]	
 
 def reverseInt(n):
 	return int(str(n)[::-1])

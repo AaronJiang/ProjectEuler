@@ -14,7 +14,7 @@ and denominator.
 If the product of these four fractions is given in its lowest common 
 terms, find the value of the denominator.
 
-This probelm bothered, I wont waste time on it. So answers from 
+This probelm bored, I wont waste time on it. So answers from 
 http://blog.dreamshire.com/2009/04/22/project-euler-problem-33-solution/
 """
 d = 1
