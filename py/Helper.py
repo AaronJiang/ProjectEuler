@@ -10,6 +10,7 @@ def isPrime(n):
 	for i in xrange(2, int(sqrt(n))+1):
 		if n%i == 0:
 			return False
+	if n == 1 : return False		
 	return True
 
 def isPalidrome(n):
@@ -64,3 +65,15 @@ def charToValue(charest, charcase):
 		return ord(charest) - 64
 	elif charcase == 'LOWCASE':
 		return ord(charest) - 96		
+
+def isTruncatablePrime(n):
+	number = str(n)
+	length = len(number)
+	flag = True
+	for i in range(length):
+		if (not isPrime(int(number[i:]))) or\
+		(not isPrime(int(number[:length-i]))):
+			flag = False
+			break 
+
+	return flag
