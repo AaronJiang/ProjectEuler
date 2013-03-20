@@ -1,7 +1,7 @@
 from Helper import isPrime
 
 primes = ''
-for i in range(2, 999999):
+for i in range(2, 9999999):
 	if isPrime(i):
 		primes += str(i)+'\n'
 

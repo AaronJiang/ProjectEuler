@@ -12,42 +12,51 @@ Find the lowest sum for a set of five primes for which
 any two primes concatenate to produce another prime.
 """
 from Helper import isPrime
-import sys
 
 # find primes under 100000
-global primes
 primes = []
-for i in range(2, 99999):
+for i in range(2, 10000):
 	if isPrime(i):
 		primes.append(i)
+primes.remove(2)
+primes.remove(5)
+print 'finished 10000 primes'		
 
-
-#check if a list of combined primes still prime 
+#check if a list of combined primes still prime
+# only need to compare the last number with 
+# the numbers before in interation 
 def combinePrime(lists):
-	# only need to compare the last number with 
-	# the numbers before in interation
 	for i in lists[:-1]:
-		if int(str(i)+str(lists[-1])) not in primes or \
-		int(str(lists[-1])+str(i)) not in primes:
+		if isPrime(int(str(i)+str(lists[-1]))) == False or \
+		isPrime(int(str(lists[-1])+str(i))) == False :
 			return False
 	return True
 
-length = len(primes)
-for i in primes:
-	for j in primes[primes.index(i)+1:]: 
-		if combinePrime([i, j]) == False:
-			continue
-		for k in primes[primes.index(j)+1:]: 
-			if combinePrime([i, j, k]) == False:
-				continue		
-			for l in primes[primes.index(k)+1:]: 
-				if combinePrime([i, j, k, l]) == False:
-					continue
-				else:
-					print [i, j, k, l]	
-					sys.exit()	
-				# for m in primes[primes.index(l)+1:]: 
-				# 	if combinePrime([i, j, k, l, m]) == False:
-				# 		continue
-				# 	else:
-				# 		print [i, j, k, l, m]	 		
+sums = 10000000
+for i in primes[:-4]:
+	for j in primes[primes.index(i)+1:-3]: 
+		if combinePrime([i, j]):
+			for k in primes[primes.index(j)+1:-2]: 
+				if combinePrime([i, j, k]):
+					for l in primes[primes.index(k)+1:-1]: 
+						if combinePrime([i, j, k, l]):
+							for m in primes[primes.index(l)+1:]: 
+								if combinePrime([i, j, k, l, m]):
+									sums_new = i + j + k + l + m
+									print [i, j, k, l, m]
+									if sums_new < sums:
+										sums = sums_new
+print sums											
+
+# length = len(primes)
+
+# for i in range(length):
+# 	for j in range(i+1, length):
+# 		if combinePrime([primes[i], primes[j]]):
+# 			for k in range(j+1, length):
+# 				if combinePrime([primes[i], primes[j], primes[k]]):
+# 					for l in range(k+1, length):
+# 						if combinePrime([primes[i], primes[j], primes[k], primes[l]]):
+# 							for m in range(l+1, length):
+# 								if combinePrime([primes[i], primes[j], primes[k], primes[l], primes[m]]):
+# 									print primes[i], primes[j], primes[k], primes[l], primes[m]
