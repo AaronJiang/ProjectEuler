@@ -13,6 +13,11 @@ any two primes concatenate to produce another prime.
 """
 from Helper import isPrime
 
+#check if two primes still prime after combination
+def isPrimeOnCombination(a, b):
+	return (isPrime(int(str(a)+str(b))) == True and \
+	isPrime(int(str(b)+str(a))) == True)
+
 # find primes under 100000
 primes = []
 for i in range(2, 10000):
@@ -20,43 +25,29 @@ for i in range(2, 10000):
 		primes.append(i)
 primes.remove(2)
 primes.remove(5)
-print 'finished 10000 primes'		
+print 'found primes under 10000'		
 
-#check if a list of combined primes still prime
-# only need to compare the last number with 
-# the numbers before in interation 
-def combinePrime(lists):
-	for i in lists[:-1]:
-		if isPrime(int(str(i)+str(lists[-1]))) == False or \
-		isPrime(int(str(lists[-1])+str(i))) == False :
-			return False
-	return True
+# Pre calculate the list of numbers for each prime 
+# which remains prime after combination. And the number
+# in list must 1. be higher than give one, 2. is prime
+primesCanCombine = {}
+for i in primes:
+	primesCanCombine[i] = []
+	for j in primes[primes.index(i)+1:]:
+		if isPrimeOnCombination(i, j):
+			primesCanCombine[i].append(j)
+print 'finished the available combined list for each prime'
 
-sums = 10000000
-for i in primes[:-4]:
-	for j in primes[primes.index(i)+1:-3]: 
-		if combinePrime([i, j]):
-			for k in primes[primes.index(j)+1:-2]: 
-				if combinePrime([i, j, k]):
-					for l in primes[primes.index(k)+1:-1]: 
-						if combinePrime([i, j, k, l]):
-							for m in primes[primes.index(l)+1:]: 
-								if combinePrime([i, j, k, l, m]):
+sums = 10**7
+for i in primes:
+	for j in primesCanCombine[i]: 
+			# k is in both primesCanCombines of i and j
+			for k in set(primesCanCombine[i]) & set(primesCanCombine[j]): 
+					for l in set(primesCanCombine[i]) & set(primesCanCombine[j])\
+					& set(primesCanCombine[k]): 
+							for m in set(primesCanCombine[i]) & set(primesCanCombine[j])\
+							& set(primesCanCombine[k]) & set(primesCanCombine[l]) : 
 									sums_new = i + j + k + l + m
-									print [i, j, k, l, m]
 									if sums_new < sums:
 										sums = sums_new
-print sums											
-
-# length = len(primes)
-
-# for i in range(length):
-# 	for j in range(i+1, length):
-# 		if combinePrime([primes[i], primes[j]]):
-# 			for k in range(j+1, length):
-# 				if combinePrime([primes[i], primes[j], primes[k]]):
-# 					for l in range(k+1, length):
-# 						if combinePrime([primes[i], primes[j], primes[k], primes[l]]):
-# 							for m in range(l+1, length):
-# 								if combinePrime([primes[i], primes[j], primes[k], primes[l], primes[m]]):
-# 									print primes[i], primes[j], primes[k], primes[l], primes[m]
+print "min sum is ", sums											
