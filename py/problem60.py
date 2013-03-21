@@ -30,6 +30,7 @@ print 'found primes under 10000'
 # Pre calculate the list of numbers for each prime 
 # which remains prime after combination. And the number
 # in list must 1. be higher than give one, 2. is prime
+# 3. remain prime after combination
 primesCanCombine = {}
 for i in primes:
 	primesCanCombine[i] = []
