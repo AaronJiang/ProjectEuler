@@ -77,3 +77,13 @@ def isTruncatablePrime(n):
 			break 
 
 	return flag
+
+def isConcatenated(n):
+	for i in range(1,10):
+		if n.count(str(i)) != 1:
+			return False
+	return True		
+
+def isPandigital(n, s=9): 
+	n=str(n);
+	return len(n)==s and not '1234567890'[:s].strip(n)
