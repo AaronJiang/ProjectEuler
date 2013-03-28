@@ -87,3 +87,7 @@ def isConcatenated(n):
 def isPandigital(n, s=9): 
 	n=str(n);
 	return len(n)==s and not '1234567890'[:s].strip(n)
+
+def isSquare(n):
+	n = sqrt(n)
+	return int(n) == n
