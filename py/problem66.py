@@ -27,11 +27,10 @@ which the largest value of x is obtained.
 """
 from Helper import isSquare
 from math import sqrt
-
 max_x2 = 0
 min_D = 1000
 
-for D in range(2, 50):
+for D in range(61, 62):
 	if not isSquare(D):
 		y = 1
 		while True:
@@ -43,4 +42,27 @@ for D in range(2, 50):
 				break
 			y += 1
 print min_D
-print max_x2
+print sqrt(max_x2)
+
+# y = 2
+# checked_D = []
+
+# nonsquares = []
+# for i in range(2, 1001):
+# 	if not isSquare(i):
+# 		nonsquares.append(i)
+# print 'done non squares for D'
+
+# while y > 0:
+# 	nonChecked_D = list(set(nonsquares) - set(checked_D))
+# 	for D in nonChecked_D:
+# 		x2 = 1 + D*y*y
+# 		if isSquare(x2):
+# 			print D,',',len(checked_D)
+# 			checked_D.append(D)
+# 			continue
+# 	if len(checked_D) == 800:
+# 		break		
+# 	y += 1
+
+# print len(checked_D)	

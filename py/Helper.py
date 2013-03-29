@@ -1,4 +1,5 @@
 from math import sqrt, pow
+from decimal import Decimal
 
 def fibonacci(n):
 	if n<=2:
@@ -89,5 +90,5 @@ def isPandigital(n, s=9):
 	return len(n)==s and not '1234567890'[:s].strip(n)
 
 def isSquare(n):
-	n = sqrt(n)
+	n = Decimal(n).sqrt() # use decimal to avoid precision lost
 	return int(n) == n
