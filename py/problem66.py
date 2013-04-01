@@ -25,44 +25,34 @@ the largest x is obtained when D=5.
 Find the value of D <= 1000 in minimal solutions of x for 
 which the largest value of x is obtained.
 """
-from Helper import isSquare
-from math import sqrt
-max_x2 = 0
-min_D = 1000
+# solution from project euler partner 'music'
+# I hurt myself badly by trying increase x or y in loop
 
-for D in range(61, 62):
-	if not isSquare(D):
-		y = 1
-		while True:
-			x2 = 1 + D*y*y
-			if isSquare(x2):
-				if max_x2 < x2:
-					max_x2 = x2
-					min_D = D
-				break
-			y += 1
-print min_D
-print sqrt(max_x2)
+maxd = 100000
 
-# y = 2
-# checked_D = []
+def contfr(n):
+   x, y = 1, int(n ** 0.5)
+   q, lastq = 1, 2 * y
+   while q != lastq:
+      q = int(x * (n ** 0.5 + y) / (n - y ** 2))
+      yield q
+      x, y = (n - y ** 2) // x, q * (n - y ** 2) // x - y
 
-# nonsquares = []
-# for i in range(2, 1001):
-# 	if not isSquare(i):
-# 		nonsquares.append(i)
-# print 'done non squares for D'
+dees = [i for i in xrange(2, maxd + 1) if int(i ** 0.5 + 0.5) ** 2 != i]
+deesforxsolns = {}
 
-# while y > 0:
-# 	nonChecked_D = list(set(nonsquares) - set(checked_D))
-# 	for D in nonChecked_D:
-# 		x2 = 1 + D*y*y
-# 		if isSquare(x2):
-# 			print D,',',len(checked_D)
-# 			checked_D.append(D)
-# 			continue
-# 	if len(checked_D) == 800:
-# 		break		
-# 	y += 1
+for d in dees:
+   seqvals = [val for val in contfr(d)]
+   seqvals.insert(0, int(d ** 0.5))
 
-# print len(checked_D)	
+   if (len(seqvals) - 2) & 1:
+      seqvals.pop(-1)
+   else:
+      seqvals.extend(seqvals[1:-1])
+
+   den, num = 1, seqvals[-1]
+   for i in xrange(len(seqvals) - 2, -1, -1):
+      num, den = seqvals[i] * num + den, num # GCD always 1
+   deesforxsolns[num] = d # num = x, den = y
+
+print deesforxsolns[max(deesforxsolns.iterkeys())]
