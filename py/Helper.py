@@ -93,3 +93,15 @@ def isSquare(n):
 	# n = Decimal(n).sqrt() # use decimal to avoid precision lost
 	n = sqrt(n) # use decimal to avoid precision lost
 	return int(n) == n
+
+def isPentagonal(x):
+	n = (1 + sqrt(1+24*x))/6
+	return n == int(n)
+
+def isTriangle(x):
+	n = (-1 + sqrt(1+8*x))/2
+	return n == int(n)
+
+def isHexagonal(x):
+	n = (1 + sqrt(1+8*x))/4
+	return n == int(n)	
