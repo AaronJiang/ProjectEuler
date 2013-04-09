@@ -11,13 +11,13 @@ exhibiting this property, but there is one other 4-digit increasing sequence.
 What 12-digit number do you form by concatenating the three terms in this sequence?
 """
 
-from Helper import isPrime
-from itertools import permutations
+from Helper import isPrime, isPerm
 
-def permutations(n):
-	return permutations(n)
-
-# for i in range(1001, 4999):
-# 	if isPrime(i):
-
-print permutations(range(1,3))
+n = 1489 	# must be odd
+while True:
+	b, c = n+3330, n+6660
+	if isPrime(n) and isPrime(b) and isPrime(c) \
+	and isPerm(n,b) and isPerm(b,c): break
+	n += 2
+ 
+print str(n)+str(b)+str(c)

@@ -105,3 +105,6 @@ def isTriangle(x):
 def isHexagonal(x):
 	n = (1 + sqrt(1+8*x))/4
 	return n == int(n)	
+
+def isPerm(a,b): 
+	return sorted(str(a)) == sorted(str(b))	
