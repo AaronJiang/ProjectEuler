@@ -12,7 +12,24 @@ Which prime, below one-million, can be written as the sum of the most consecutiv
 
 """
 from Helper import isPrime
+limit = 1000000
 
-primes = [i for i in range(2, 1000000) if isPrime(i)]
+primes = [i for i in range(2, limit) if isPrime(i)]
+(countmax, primemax)  = (1, 2)
 
-print len(primes)
+for i in range(len(primes)-1):
+	if countmax*primes[i] > limit: continue
+	sums = primes[i]
+	count = 1
+	for j in range(i+1, len(primes)):
+		sums += primes[j]
+		if j - i + 1 < countmax: continue
+		if sums > limit: break
+		if sums in primes: 
+			count = j - i + 1
+			sumtmp = sums
+
+	if countmax < count : 
+		countmax = count
+		primemax = sumtmp
+		print countmax, primemax
