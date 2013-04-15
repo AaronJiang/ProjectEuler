@@ -1,4 +1,4 @@
-from math import sqrt, pow
+from math import *
 from decimal import Decimal
 
 def fibonacci(n):
@@ -108,3 +108,6 @@ def isHexagonal(x):
 
 def isPerm(a,b): 
 	return sorted(str(a)) == sorted(str(b))	
+
+def combinator(n, r):
+	return factorial(n)/(factorial(r)*factorial(n-r))
