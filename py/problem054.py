@@ -69,7 +69,7 @@ def setCards(cards):
 	return ordered		
 
 # return order card number for comparing values
-# and move the matched numbers to last.
+# and move the matched special numbers to last.
 def isFlush(cards):
 	suit = cards['suit']
 	number = cards['number']
@@ -179,6 +179,7 @@ def compareTwoPlayer(p1, p2):
 	else:
 		return False			
 
+#read file and start comparing
 count = 0
 f = open('poker.txt', 'r')
 for line in f:
