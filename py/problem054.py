@@ -126,8 +126,9 @@ def isTwoPairs(cards):
 	for i in number:
 		if number.count(i) == 1:
 			count += 1
+			idx = i
 	if count == 1:		
-		number.insert(0, number.pop(number.index(i)))
+		number.insert(0, number.pop(number.index(idx)))
 	if number[1] == number[2] and number[3] == number[4]:
 		return number	
 
@@ -149,8 +150,6 @@ def isHighCard(cards):
 
 def compareTwoPlayer(p1, p2):
 	(p1_index, p2_index) = (9, 9)
-	# funs = [isRoyalFlush, isStraightFlush, isFourKind, isFullHouse, \
-	# isFlush, isStraight, isThreeKind, isTwoPairs, isOnePair, isHighCard]
 	funs = [isRoyalFlush, isStraightFlush, isFourKind, isFullHouse, \
 	isFlush, isStraight, isThreeKind, isTwoPairs, isOnePair, isHighCard]
 
@@ -162,18 +161,14 @@ def compareTwoPlayer(p1, p2):
 
 	for i in range(len(funs)):
 		p2_number = funs[i](p2)
-		if funs[i](p2):
+		if p2_number:
 			p2_index = i
 			break
 
-	# print p1_index, p2_index
-	# print p1_number, p2_number
-	# compare special cards
-	if p1_index < p2_index: 
-	 	return True
-
 	# compare special cards, if sepcial cards equal
 	# compare other cards from highest to lowest
+	if p1_index < p2_index: 
+	 	return True
 	elif p1_index == p2_index:
 		for i in range(4, -1, -1):
 			if p1_number[i] > p2_number[i]:
@@ -194,6 +189,3 @@ for line in f:
 	if compareTwoPlayer(p1, p2):
 		count += 1
 print count		
-
-# cards = setCards(['AD', 'KD', 'JD', 'QD', 'TD'])
-# print isRoyalFlush(cards) 
