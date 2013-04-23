@@ -106,6 +106,14 @@ def isHexagonal(x):
 	n = (1 + sqrt(1+8*x))/4
 	return n == int(n)	
 
+def isHeptagonal(x):
+	n = (3 + sqrt(9+40*x))/10
+	return n == int(n)	
+
+def isOctagonal(x):
+	n = (1 + sqrt(1+3*x))/3
+	return n == int(n)	
+
 def isPerm(a,b): 
 	return sorted(str(a)) == sorted(str(b))	
 
