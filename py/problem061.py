@@ -20,70 +20,38 @@ This is the only set of 4-digit numbers with this property.
 Find the sum of the only ordered set of six cyclic 4-digit numbers for which each polygonal
 type: triangle, square, pentagonal, hexagonal, heptagonal, and octagonal, is represented 
 by a different number in the set.
+
+
+I got headache while solving this problem at first, and I was too lazy to pick it up again.
+Anyway, I just referred the solution from
+http://blog.dreamshire.com/2011/01/16/project-euler-problem-61-solution/
+
 """
 
-from Helper import *
-import sys
-
-def isCyclic(numbers):
-    seperates = []
-    for i in numbers:
-        # no repeat number
-        if numbers.count(i) > 1:
-            return False 
-        seperates.append(str(i)[:2])
-        seperates.append(str(i)[2:])
-
-    for i in seperates:
-        # cyclic digits must occur in double
-        if seperates.count(i) % 2 != 0:
-            return False 
-    return True        
-
-triangles = [i for i in range(1000, 2000) if isTriangle(i)]
-squares = [i for i in range(1000, 2000) if isSquare(i)]
-pentagonals = [i for i in range(1000, 2000) if isPentagonal(i)]
-hexagonals = [i for i in range(1000, 2000) if isHexagonal(i)]
-heptagonals = [i for i in range(1000, 2000) if isHeptagonal(i)]
-octagonals = [i for i in range(1000, 2000) if isOctagonal(i)]
-
-print len(triangles), len(squares), len(pentagonals), len(hexagonals), len(heptagonals), len(octagonals)
-
-for triangle in triangles:
-    for square in squares:
-        for pentagonal in pentagonals:
-            for hexagonal in hexagonals:
-                for heptagonal in heptagonals:
-                    for octagonal in octagonals:
-                        numbers = [triangle, square, pentagonal, \
-                        hexagonal, heptagonal, octagonal]
-                        if isCyclic(numbers): 
-                            print numbers
-                            sys.exit(0)
-# def fn(n):
-#   return (3,n*(n+1)/2), (4,n*n), (5,n*(3*n-1)/2), (6,n*(2*n-1)), (7,n*(5*n-3)/2), (8,n*(3*n-2))
+def fn(n):
+  return (3,n*(n+1)/2), (4,n*n), (5,n*(3*n-1)/2), (6,n*(2*n-1)), (7,n*(5*n-3)/2), (8,n*(3*n-2))
  
-# def next(types, data):
-#   if len(types)==6 and data[0]//100 == data[-1]%100:
-#     print data, sum(data)
-#   else:
-#     for t, n in ds.get((types[-1], data[-1]), []):
-#       if t not in types:
-#         next(types+[t], data+[n])
+def next(types, data):
+  if len(types)==6 and data[0]//100 == data[-1]%100:
+    print data, sum(data)
+  else:
+    for t, n in ds.get((types[-1], data[-1]), []):
+      if t not in types:
+        next(types+[t], data+[n])
  
-# p = []          #build a list of polygonal numbers with their type (type, pnum)
-# n = 19          #first n for octogonal number > 999
+p = []          #build a list of polygonal numbers with their type (type, pnum)
+n = 19          #first n for octogonal number > 999
  
-# while n<141:    #last n for triangle numbers < 10000
-#   for type, data in fn(n):
-#     if 1000 <= data <= 9999 and data%100 > 9:
-#       p.append( (type, data) ) 
-#   n+=1
+while n<141:    #last n for triangle numbers < 10000
+  for type, data in fn(n):
+    if 1000 <= data <= 9999 and data%100 > 9:
+      p.append( (type, data) ) 
+  n+=1
  
-# ds = {}         # build a dictionary of tuples
-# for t1, d1 in p:
-#   for t2, d2 in p:
-#     if t1 != t2 and d1%100 == d2//100:
-#       ds[t1, d1] = ds.get((t1, d1),[]) + [(t2, d2)] 
+ds = {}         # build a dictionary of tuples
+for t1, d1 in p:
+  for t2, d2 in p:
+    if t1 != t2 and d1%100 == d2//100:
+      ds[t1, d1] = ds.get((t1, d1),[]) + [(t2, d2)] 
  
-# for type, data in ds: next([type],[data])
+for type, data in ds: next([type],[data])
