@@ -13,26 +13,24 @@ truncatable primes.
 """
 from Helper import isTruncatablePrime, isPrime
 
-# n = 11
-# sums = 0
-# count = 0
+n = 11
+sums = 0
+count = 0
 
-# while True:
-# 	flag = True
-# 	for i in (0,4,6,8):
-# 		if str(n).count(str(i)) > 0:
-# 			flag = False
-# 			break
+while True:
+	flag = True
+	for i in (0,4,6,8):
+		if str(n).count(str(i)) > 0:
+			flag = False
+			break
 
-# 	if flag == True and isPrime(n) == True:		
-# 		if isTruncatablePrime(n):
-# 			print n
-# 			count += 1
-# 			sums += n
-# 			if count == 11:
-# 				break
+	if flag == True and isPrime(n) == True:		
+		if isTruncatablePrime(n):
+			count += 1
+			sums += n
+			if count == 11:
+				break
 
-# 	n += 2
-# print sums	
+	n += 2
+print sums	
 
-print isPrime(23339)
