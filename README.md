@@ -1,4 +1,4 @@
-ProjectEular
+ProjectEuler
 ============
 
-The codes to the problems from projecteular.net
+The codes to the problems from projecteuler.net
