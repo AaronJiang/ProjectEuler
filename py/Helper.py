@@ -30,6 +30,9 @@ def lcm(a, b):
     """Return lowest common multiple."""
     return a * b / gcd(a, b)
 
+def isRelativePrime(a, b):
+	return gcd(a, b) == 1
+	
 def factors(n):
 	res = []
 	for i in range(1, int(sqrt(n))+1):
