@@ -20,25 +20,18 @@ It can be seen that n=6 produces a maximum n/phi(n) for n <= 10.
 Find the value of n <= 1,000,000 for which n/phi(n) is a maximum.
 """
 
-from Helper import isRelativePrime
+""" 
+Calculation of Totient Function
+http://mathworld.wolfram.com/TotientFunction.html 
 
-def phi(n):
-	count = 0
-	for i in range(1, n):
-		if isRelativePrime(i, n):
-			count += 1
-	return count
-
-def main():
-	limit = 5001
-	maximum = 0
-	maxn = 0
-	for i in range(2, limit):
-		devidePhi = float(i) / phi(i)
-		if devidePhi > maximum:
-			maximum = devidePhi
-			maxn = i
-	print maxn
-
-if __name__ == '__main__':
-	main()		
+"""
+from Helper import isPrime
+limit = 10 ** 6
+primes = [i for i in range(2, 100) if isPrime(i)]
+maxn = 1
+for i in primes:
+	maxn *= i
+	if maxn > limit:
+		maxn /= i
+		break
+print maxn			

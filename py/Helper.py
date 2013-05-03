@@ -35,11 +35,21 @@ def isRelativePrime(a, b):
 	
 def factors(n):
 	res = []
-	for i in range(1, int(sqrt(n))+1):
+	limit = int(sqrt(n))+1
+	for i in range(1, limit):
 		if n%i == 0:
 			res.append(i)
 			res.append(n/i)
 	return res		
+
+def primeFactors(n):
+	res = []
+	limit = int(sqrt(n))+1
+	for i in range(1, limit):
+		if n%i == 0:
+			if isPrime(i) : res.append(i)
+			if isPrime(n/i) : res.append(n/i)
+	return set(res)
 
 def CollatzChain(n):
 	chain = []
