@@ -1,5 +1,6 @@
 from math import *
 from decimal import Decimal
+from operator import itemgetter
 
 def fibonacci(n):
 	if n<=2:
@@ -132,3 +133,6 @@ def isPerm(a,b):
 
 def combinator(n, r):
 	return factorial(n)/(factorial(r)*factorial(n-r))
+
+def sortedDict(d):
+	return sorted(d.iteritems(), key=itemgetter(1))
