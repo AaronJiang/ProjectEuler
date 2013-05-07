@@ -15,13 +15,26 @@ By listing the set of reduced proper fractions for d <= 1,000,000 in
 ascending order of size, find the numerator of the fraction immediately 
 to the left of 3/7.
 """
-from Helper import gcd, sortedDict
+from Helper import gcd
 
-fractions = {}
-for d in range(1000000, 1000001):
-	for i in range(1, d):
-		if gcd(d, i) == 1:
-			fractions[str(i)+'/'+str(d)] = float(i)/d
+upper = 3.0 / 7
+lower = 2.0 / 5
+target = (3.0/7, '3/7')
+result = ()
 
-# sortedDict(fractions)
+for d in range(8, 1000001):
+	# lower< n/d < 3/7
+	fractions = [target]
+	upper_n = int(d * upper) + 1
+	lower_n = int(d * lower)
+	for n in range(lower_n, upper_n):
+		if gcd(d, n) == 1:
+			fractions.append((float(n)/d, str(n)+'/'+str(d)))
+	if len(fractions) > 1:
+		fractions.sort()
+		idx = fractions.index(target)
+		if fractions[idx-1][0] > lower: 
+			lower = fractions[idx-1][0]
+			result = fractions[idx-1]
 
+print result
