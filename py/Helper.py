@@ -30,6 +30,10 @@ def gcd(a, b):
 def lcm(a, b):
     """Return lowest common multiple."""
     return a * b / gcd(a, b)
+    
+def lcmm(*args):
+    """Return lcm of args."""   
+    return reduce(lcm, args)
 
 def isRelativePrime(a, b):
 	return gcd(a, b) == 1
