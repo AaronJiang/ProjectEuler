@@ -33,7 +33,7 @@ from Helper import gcd
 Limit = 1500000
 mlimit = int(sqrt(Limit/2)) + 1  # a+b+c<Limit
 # list to point how many times the same value
-# a + b + c has been caculated before
+# a + b + c has been caculated
 wires = [0] * Limit 
 count = 0
 
