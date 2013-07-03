@@ -43,8 +43,10 @@ def main():
 	for code in logincode:
 		for i in range(codelength-1):
 			for j in range(i+1, codelength):
-				if passcode.index(code[i]) > passcode.index(code[j]):
-					passcode = swap(passcode, passcode.index(code[i]), passcode.index(code[j]) )
+				passcode_i = passcode.index(code[i]) 
+				passcode_j = passcode.index(code[j]) 
+				if passcode_i > passcode_j:
+					passcode = swap(passcode, passcode_i, passcode_j)
 	print passcode
 
 if __name__ == '__main__':
