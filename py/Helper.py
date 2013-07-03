@@ -140,3 +140,9 @@ def combinator(n, r):
 
 def sortedDict(d):
 	return sorted(d.iteritems(), key=itemgetter(1))
+
+# swap the ith and jth value in a string
+def swap(c, i, j):
+	c = list(c)
+	c[i], c[j] = c[j], c[i]
+	return ''.join(c)
