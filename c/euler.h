@@ -1,4 +1,5 @@
 #ifndef EULER_H
 #define EULER_H
-int fibonacci(int n);
+long fibonacci(long n);
+int isPrime(long n);
 #endif
