@@ -10,10 +10,10 @@
 
 void main ()
 {
-	int product = 0, i = 100, j = 100, number;
+	long product = 0, i, j, number;
 
-	for (; i < 1000; i++) {
-		for (; j < 1000; j++) {
+	for (i = 100; i < 1000; i++) {
+		for (j = 100; j < 1000; j++) {
 			number = i * j;
 			if (isPalidrome(number) == 1) {
 				if (product < number) {
@@ -22,7 +22,5 @@ void main ()
 			}
 		}
 	}
-	// product = isPalidrome(1231);
-
-	printf("largest product is %d\n", product);
+	printf("largest product is %ld\n", product);
 }

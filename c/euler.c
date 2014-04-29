@@ -29,3 +29,16 @@ int isPalidrome(long orig)
 
 	return orig == reversed;
 }
+
+long gcd(unsigned long a, long b) {
+	long c;
+	while (a != 0) {
+		c = a; a = b%a;  b = c;
+	}
+	return b;
+}
+
+long lcm(long a, long b) {
+	unsigned long long c = (unsigned long long) a * b;
+	return c / gcd(a, b);
+}
